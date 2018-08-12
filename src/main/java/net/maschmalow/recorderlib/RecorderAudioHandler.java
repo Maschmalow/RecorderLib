@@ -7,6 +7,8 @@ import net.dv8tion.jda.core.audio.UserAudio;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static net.maschmalow.recorderlib.AudioLib.CHUNK_PER_SECOND;
+
 //this implementation will bufferise PCM audio until AUDIOBUF_MAXSIZE memory is used.
 // At this point, it will notify and give the buffer to the application and resume with a empty buffer
 public class RecorderAudioHandler implements AudioReceiveHandler {
@@ -71,4 +73,7 @@ public class RecorderAudioHandler implements AudioReceiveHandler {
     }
 
 
+    public int getCurrentSilenceMs() {
+        return afkTimer*(1000/CHUNK_PER_SECOND);
+    }
 }
