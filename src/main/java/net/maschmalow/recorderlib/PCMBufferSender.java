@@ -10,17 +10,17 @@ public class PCMBufferSender implements AudioSendHandler {
     private Iterator<byte[]> audioDataIter;
 
 
-    public void sendPCM(Iterator<byte[]> audioDataIter) {
+    void feedPCM(Iterator<byte[]> audioDataIter) {
         this.audioDataIter = audioDataIter;
     }
 
     @Override
     public boolean canProvide() {
+        if(audioDataIter == null) return false;
+
         boolean canProvide = audioDataIter.hasNext();
-        if(!canProvide) {
-            audioDataIter = null; //attempt to hint garbage collector that the data is not required anymore
-            System.gc(); // I don't feel this is good practice, check if it is better to be removed
-        }
+        if(!canProvide)
+            audioDataIter = null; //clear all reference so that gc can do its job
 
         return canProvide;
     }

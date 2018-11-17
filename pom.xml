@@ -7,6 +7,8 @@
     <groupId>net.maschmalow</groupId>
     <artifactId>recorderlib</artifactId>
     <version>0.1</version>
+    <packaging>jar</packaging>
+    <name>Recorder Library</name>
 
     <properties>
         <maven.compiler.source>1.9</maven.compiler.source>
