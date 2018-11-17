@@ -12,13 +12,14 @@
 
     <properties>
         <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.6.0_367</version>
+            <version>3.8.1_441</version>
         </dependency>
         <dependency>
             <groupId>de.sciss</groupId>
@@ -26,4 +27,21 @@
             <version>1.0.4</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-plugins-release</id>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </repository>
+    </repositories>
 </project>
