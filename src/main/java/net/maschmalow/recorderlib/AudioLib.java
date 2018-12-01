@@ -14,8 +14,8 @@ public class AudioLib {
     public static final int OUT_MP3_BITRATE = 128; //kbps ofc
     public static final int AUDIOBUF_MAXSIZE = 128; //MB
 
-    private PCMBufferSender sender = new PCMBufferSender();
-    private RecorderAudioHandler recorder = new RecorderAudioHandler();
+    private PCMBufferSender sender;
+    private RecorderAudioHandler recorder;
     private Guild guild;
 
 
@@ -31,29 +31,26 @@ public class AudioLib {
     public void attachToGuild(Guild guild) {
         if(this.guild != null)
             detachFromGuild();
-        else
-            flush();
-
 
         this.guild = guild;
+        sender = new PCMBufferSender();
+        recorder = new RecorderAudioHandler();
 
         guild.getAudioManager().setSendingHandler(sender);
         guild.getAudioManager().setReceivingHandler(recorder);
     }
 
     public void detachFromGuild() {
-        flush();
         if(guild == null)
             return;
+
+        sender = null;
+        recorder = null;
 
         guild.getAudioManager().setSendingHandler(null);
         guild.getAudioManager().setReceivingHandler(null);
     }
 
-    public void flush() {
-        recorder.handoutAudio();
-        System.gc();
-    }
 
     public void flushToOStream(OutputStream dest, Integer time) throws IOException {
 
@@ -61,12 +58,10 @@ public class AudioLib {
         for(byte[] chunk : recorder.handoutAudio(time))
             encoder.feed(chunk);
         encoder.close();
-        System.gc();
     }
 
     public void flushToSender(Integer time) {
         sender.feedPCM(recorder.handoutAudio(time).iterator());
-        System.gc();
     }
 
 
