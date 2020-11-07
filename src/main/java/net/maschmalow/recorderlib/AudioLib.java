@@ -1,7 +1,7 @@
 package net.maschmalow.recorderlib;
 
-import net.dv8tion.jda.core.audio.AudioReceiveHandler;
-import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.api.audio.AudioReceiveHandler;
+import net.dv8tion.jda.api.entities.Guild;
 
 import java.io.IOException;
 import java.io.OutputStream;

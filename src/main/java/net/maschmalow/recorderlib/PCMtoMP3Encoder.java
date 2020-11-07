@@ -1,7 +1,7 @@
 package net.maschmalow.recorderlib;
 
 import de.sciss.jump3r.lowlevel.LameEncoder;
-import net.dv8tion.jda.core.audio.AudioReceiveHandler;
+import net.dv8tion.jda.api.audio.AudioReceiveHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;

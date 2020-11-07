@@ -1,7 +1,8 @@
 package net.maschmalow.recorderlib;
 
-import net.dv8tion.jda.core.audio.AudioSendHandler;
+import net.dv8tion.jda.api.audio.AudioSendHandler;
 
+import java.nio.ByteBuffer;
 import java.util.Iterator;
 
 
@@ -28,8 +29,8 @@ public class PCMBufferSender implements AudioSendHandler {
     }
 
     @Override
-    public byte[] provide20MsAudio() {
-        return audioDataIter.next();
+    public ByteBuffer provide20MsAudio() {
+        return ByteBuffer.wrap(audioDataIter.next());
     }
 
     @Override
