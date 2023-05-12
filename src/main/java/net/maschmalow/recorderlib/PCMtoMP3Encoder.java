@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class PCMtoMP3Encoder  {
-    private LameEncoder encoder;
-    private OutputStream mp3_out;
+    private final LameEncoder encoder;
+    private final OutputStream mp3_out;
 
     public PCMtoMP3Encoder(OutputStream mp3_out) {
         encoder = new LameEncoder(AudioReceiveHandler.OUTPUT_FORMAT, AudioLib.OUT_MP3_BITRATE, LameEncoder.CHANNEL_MODE_AUTO, LameEncoder.QUALITY_HIGHEST, false);

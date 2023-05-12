@@ -65,4 +65,7 @@ public class AudioLib {
     }
 
 
+    public void setVolume(double volume)  {
+        recorder.setVolume(volume);
+    }
 }

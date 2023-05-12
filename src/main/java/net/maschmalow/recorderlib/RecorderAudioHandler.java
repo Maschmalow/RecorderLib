@@ -3,6 +3,7 @@ package net.maschmalow.recorderlib;
 import net.dv8tion.jda.api.audio.AudioReceiveHandler;
 import net.dv8tion.jda.api.audio.CombinedAudio;
 import net.dv8tion.jda.api.audio.UserAudio;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -20,7 +21,7 @@ class RecorderAudioHandler implements AudioReceiveHandler {
     private double volume = 1.0; //default volume 100%
     private int afkTimer = 0;
 
-    private BlockingDeque<byte[]> audioData = new LinkedBlockingDeque<>( BUFFER_MAX_CAPACITY);
+    private final BlockingDeque<byte[]> audioData = new LinkedBlockingDeque<>( BUFFER_MAX_CAPACITY);
 
     RecorderAudioHandler() {}
 
@@ -49,7 +50,7 @@ class RecorderAudioHandler implements AudioReceiveHandler {
 
 
     @Override
-    public void handleUserAudio(UserAudio userAudio) {
+    public void handleUserAudio(@NotNull UserAudio userAudio) {
         throw new UnsupportedOperationException("UserAudio handling is not supported");
     }
 
